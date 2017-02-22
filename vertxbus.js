@@ -17,10 +17,6 @@
 
 var vertx = vertx || {};
 
-if (module) {
-	module.exports = vertx;
-}
-
 !function(factory) {
 	if (typeof define === 'function' && define.amd) {
 		// Expose as an AMD module with SockJS dependency.
@@ -82,11 +78,10 @@ if (module) {
 				handlers = [handler];
 				handlerMap[address] = handlers;
 				// First handler for this address so we should register the connection
-				var msg = {
+				sockJSConn.send(JSON.stringify({
 					type: 'register',
 					address: address
-				};
-				sockJSConn.send(JSON.stringify(msg));
+				}));
 			} else {
 				handlers[handlers.length] = handler;
 			}
@@ -104,13 +99,11 @@ if (module) {
 				}
 				if (handlers.length === 0) {
 					// No more local handlers so we should unregister the connection
-
-					var msg = {
+					sockJSConn.send(JSON.stringify({
 						type: 'unregister',
 						address: address
-					};
+					}));
 
-					sockJSConn.send(JSON.stringify(msg));
 					delete handlerMap[address];
 				}
 			}
@@ -147,16 +140,15 @@ if (module) {
 		};
 
 		sockJSConn.onmessage = function(e) {
-			var msg = e.data;
-			var json = JSON.parse(msg);
+			var json = JSON.parse(e.data);
 			var body = json.body;
-			var replyAddress = json.replyAddress;
 			var address = json.address;
 			var replyHandler;
-			if (replyAddress) {
+
+			if (json.replyAddress) {
 				replyHandler = function(reply, replyHandler) {
 					// Send back reply
-					that.send(replyAddress, reply, replyHandler);
+					that.send(json.replyAddress, reply, replyHandler);
 				};
 			}
 			var handlers = handlerMap[address];
