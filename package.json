@@ -1,5 +1,5 @@
 {
-  "name": "vertxbus",
+  "name": "@kiwigrid/vertxbus-client",
   "version": "2.1.4",
   "description": "SockJS Event Bus bridge for Vert.x 2",
   "main": "vertxbus.js",
@@ -23,9 +23,9 @@
     "eslint": "3.16.0"
   },
   "publishConfig": {
-    "registry": "https://nexus.dev.kiwigrid.com/repository/common-npm/"
+    "registry": "https://repo.dev.kiwigrid.com/artifactory/api/npm/kiwi-npm"
   },
-  "dependencies": {
-    "sockjs-client": "1.1.2"
+  "peerDependencies": {
+    "sockjs-client": ">= 1.1.2 < 2"
   }
 }
