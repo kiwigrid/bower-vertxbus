@@ -13,7 +13,7 @@
   "keywords": [
     "vertx"
   ],
-  "author": "",
+  "author": "Matthias Komarek <matthias.komarek.ext@kiwigrid.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/kiwigrid/bower-vertxbus/issues"

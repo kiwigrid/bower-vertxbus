@@ -1,0 +1,1 @@
+##### NPM and Bower Version of vertxbus v2
