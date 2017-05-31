@@ -22,9 +22,6 @@
   "devDependencies": {
     "eslint": "3.16.0"
   },
-  "publishConfig": {
-    "registry": "https://repo.dev.kiwigrid.com/artifactory/api/npm/kiwi-npm"
-  },
   "peerDependencies": {
     "sockjs-client": ">= 1.1.2 < 2"
   }
